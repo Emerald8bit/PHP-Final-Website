@@ -206,24 +206,24 @@
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
                     <i class="flaticon-six-pack display-1 text-primary"></i>
-                    <h3 class="text-uppercase my-4">Wedding Events</h3>
-                    <p>Together let's create beautiful memories of your wedding</p>
+                    <h3 class="text-uppercase my-4">Sports Photography</h3>
+                    <p>Lorem ipsum dolor sit amet</p>
                     <a class="text-uppercase" href="allwedding.php">Book Service <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
                     <i class="flaticon-barbell display-1 text-primary"></i>
-                    <h3 class="text-uppercase my-4">Product Shoots</h3>
-                    <p>Give your product that advantage over brands</p>
+                    <h3 class="text-uppercase my-4">Senior Pictures</h3>
+                    <p>Lorem ipsum dolor sit amet</p>
                     <a class="text-uppercase" href="allshoots.php">Book Service <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
                     <i class="flaticon-bodybuilding display-1 text-primary"></i>
-                    <h3 class="text-uppercase my-4">Model Shoot</h3>
-                    <p>Showcase your creativity in frame</p>
+                    <h3 class="text-uppercase my-4">Portrait Photography</h3>
+                    <p>Lorem ipsum dolor sit amet</p>
                     <a class="text-uppercase" href="allshoots.php">Book Service <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
@@ -246,7 +246,7 @@
                 </div>
                 <div class="owl-carousel testimonial-carousel">
                     <div class="testimonial-item">
-                        <p class="fs-4 fw-normal text-light mb-4"><i class="fa fa-quote-left text-primary me-3"></i>Gave my porduct that needed edge</p>
+                        <p class="fs-4 fw-normal text-light mb-4"><i class="fa fa-quote-left text-primary me-3"></i>Lorem ipsum dolor sit amet</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid rounded-circle" src="img/testimonial-1.jpg" alt="">
                             <div class="ps-4">
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                     <div class="testimonial-item">
-                        <p class="fs-4 fw-normal text-light mb-4"><i class="fa fa-quote-left text-primary me-3"></i>Beautiful wedding pictures</p>
+                        <p class="fs-4 fw-normal text-light mb-4"><i class="fa fa-quote-left text-primary me-3"></i>Lorem ipsum dolor sit amet</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid rounded-circle" src="img/testimonial-2.jpg" alt="">
                             <div class="ps-4">

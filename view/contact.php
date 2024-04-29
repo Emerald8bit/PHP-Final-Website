@@ -144,7 +144,7 @@
         <div class="row g-0">
             <div class="col-lg-6">
                 <div class="bg-dark p-5">
-                    <form action="receivemessage.php" method="POST">
+                    <form method="POST">
                         <div class="row g-3">
                             <div class="col-6">
                                 <input type="text" class="form-control bg-light border-0 px-4" placeholder="Your Name" style="height: 55px;">

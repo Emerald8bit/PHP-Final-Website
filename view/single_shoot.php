@@ -106,7 +106,7 @@ if(isset($_GET['delete_id'])) {
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.php" class="nav-item nav-link">Home</a>
                             <a href="about.php" class="nav-item nav-link">About</a>
-                            <a href="allshoots.php" class="nav-item nav-link">Services</a>
+                            <a href="allshoots.php" class="nav-item nav-link active">Services</a>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                             <a href="../Login/register.php" class="nav-item nav-link">Register</a>
                             <a href="cart.php" class="nav-item nav-link">Cart</a>
