@@ -17,14 +17,17 @@ if(isset($_GET['shoot_id'])) {
             $shoot_name = $_POST['shoot_name'];
             $shoot_price = $_POST['shoot_price'];
             $shoot_label = $_POST['shoot_label'];
+            $shoot_img = "";
             $shoot_key = $_POST['shoot_key'];
 
+            $update_shoot = new shoot_class();
+
             // Update the service details in the database
-            $update_result = update_shoot($shoot_id,$shoot_name,$shoot_price,$shoot_label,$shoot_key);
+            $update_result = $update_shoot->update_shoot($shoot_id,$shoot_name,$shoot_price,$shoot_label,$shoot_img,$shoot_key);
 
             if($update_result) {
                 // Redirect back to the single shoot page with a success message
-                header("Location: single_shoot.php?shoot_id=$shoot_id&success=1");
+                header("Location: ../view/single_shoot.php?shoot_id=$shoot_id&success=1");
                 exit;
             } else {
                 $error = "Failed to update the service. Please try again.";

@@ -147,7 +147,7 @@ include("../controllers/shoot_controller.php");
                 <a href="../Admin/edit_shoot.php?shoot_id=<?php echo $shoot_id; ?>" class="btn btn-primary">Edit</a>
 
                 <!-- Delete Button -->
-                <a href="../Admin/delete_shoot.php?id=<?php echo $shoot['shoot_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this shoot?')">Delete</a>
+                <a href="?delete_id=<?php echo $shoot_id; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this shoot?')">Delete</a>
             </div>
         </div>
     </div>
