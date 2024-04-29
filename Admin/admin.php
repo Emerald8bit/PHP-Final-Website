@@ -109,7 +109,7 @@ $cid = $_SESSION['customer_id'];
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Shoots</h5>
-        <p class="card-text">View all shoot services created for customers</p>
+        <p class="card-text">Add a new shoot services for customers</p>
         <a href="shoots.php" class="btn btn-primary">Add</a>
       </div>
     </div>
