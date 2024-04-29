@@ -17,7 +17,7 @@ if(isset($_GET['shoot_id'])) {
             $shoot_name = $_POST['shoot_name'];
             $shoot_price = $_POST['shoot_price'];
             $shoot_label = $_POST['shoot_label'];
-            $shoot_img = $_POST['shoot_img'];
+            $shoot_img = $_POST['shoot_img']; // Retrieve shoot_img from the form
             $shoot_key = $_POST['shoot_key'];
 
             $update_shoot = new shoot_class();
@@ -69,6 +69,9 @@ if(isset($_GET['shoot_id'])) {
     <label for="shoot_label">Description:</label><br>
     <textarea id="shoot_label" name="shoot_label" required><?php echo $shoot['shoot_label']; ?></textarea><br>
 
+    <label for="shoot_img">Image:</label><br>
+    <input type="text" id="shoot_img" name="shoot_img" value="<?php echo $shoot['shoot_img']; ?>" required><br>
+
     <label for="shoot_key">Key:</label><br>
     <input type="text" id="shoot_key" name="shoot_key" value="<?php echo $shoot['shoot_key']; ?>" required><br>
 
@@ -77,6 +80,5 @@ if(isset($_GET['shoot_id'])) {
 </body>
 
 </html>
-
 
 
