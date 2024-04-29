@@ -5,6 +5,21 @@ session_start();
 //     //   header('Location:../index.php');
 //    };
 include("../controllers/shoot_controller.php");
+
+if(isset($_GET['delete_id'])) {
+    $shoot_id = $_GET['delete_id'];
+    $delete_shoot = new shoot_class();
+    // Update the service details in the database
+    $delete_result = $delete_shoot->delete_shoot($shoot_id);
+
+    if ($delete_result) {
+        // Redirect back to the single shoot page with a success message
+        header("Location: allshoots.php?shoot_id=$shoot_id&success=1");
+        exit;
+    } else {
+        $error = "Failed to update the service. Please try again.";
+    }
+}
 ?>
 
 <!DOCTYPE html>

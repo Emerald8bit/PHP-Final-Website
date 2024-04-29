@@ -17,7 +17,7 @@ if(isset($_GET['shoot_id'])) {
             $shoot_name = $_POST['shoot_name'];
             $shoot_price = $_POST['shoot_price'];
             $shoot_label = $_POST['shoot_label'];
-            $shoot_img = "";
+            $shoot_img = $_POST['shoot_img'];
             $shoot_key = $_POST['shoot_key'];
 
             $update_shoot = new shoot_class();
