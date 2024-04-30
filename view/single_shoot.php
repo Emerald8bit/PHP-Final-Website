@@ -152,11 +152,11 @@ if(isset($_GET['delete_id'])) {
                 <p class="mb-4"><?php print_r ($shoot['shoot_label'])?></p>
                 <p class="mb-4">$<?php print_r ($shoot['shoot_price'])?></p>
                 <ul class="nav nav-pills justify-content-between mb-3">
-                        <li class="nav-item w-50">
-                            <a class="nav-link text-uppercase text-center w-100 active" data-bs-toggle="pill" href="cart.php" name="addToCart">Book Service</a>
-                        </li>
-                    <input type="hidden" name="p_id" value="<?php echo($shoot['shoot_id'])?>">
+                    <form action="../actions/addshoots_to_cart.php" method="POST">
+                        <input type="hidden" name="p_id" value="<?php echo $shoot_id; ?>">
                         <input type="hidden" name="qty" value="1">
+                        <button type="submit" class="btn btn-primary">Book Service</button>
+                    </form>
                 </ul>
                 <!-- Edit Button -->
                 <a href="../Admin/edit_shoot.php?shoot_id=<?php echo $shoot_id; ?>" class="btn btn-primary">Edit</a>

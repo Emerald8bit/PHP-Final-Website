@@ -124,14 +124,16 @@ include("../controllers/shoot_controller.php");
 
     <div class="col-lg-4">
         <!-- Search Form Start -->
+        <form action="../actions/shoot_search.php" method="POST">
         <div style="text-align:center;">
             <div class="mb-5 text-center">
                 <div class="input-group">
-                    <input type="text" class="form-control p-3" placeholder="Keyword">
+                    <input type="text" class="form-control p-3" placeholder="Keyword" name="search" value="">
                     <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
                 </div>
             </div>
         </div>
+        </form>
         <!-- Search Form End -->
         <!-- Plain Text End -->
     </div>
@@ -173,7 +175,6 @@ include("../controllers/shoot_controller.php");
                         </ul>
                         <input type="hidden" name="p_id" value="<?php echo($item['shoot_id'])?>">
                         <input type="hidden" name="qty" value="1">
-                        <button type="submit" name="addToCart">Book Service</button>
                     </div>
                 </div>
                 </form>

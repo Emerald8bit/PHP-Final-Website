@@ -1,14 +1,21 @@
 <?php
+
 session_start();
 if (empty($_SESSION['customer_id']) and empty($_SESSION['customer_name']) and empty($_SESSION['customer_email']) and $_SESSION['user_role']!= 1)   {
     header('Location:../Login/login.php');
 };
-include("../controllers/cart_controller.php");
-// session_start();
-$cid = $_SESSION['customer_id'];
-echo $cid;
-$countwed =count_weddingcart_ctr($cid);
-$countwed =count_shootcart_ctr($cid);
+include("../controllers/shoot_controller.php");
+// // include("../settings/core.php");
+// $cid = $_SESSION['customer_id'];
+// // $count = count_cart_ctr($cid);
+
+// Check if shoot_id is set in the URL
+if(isset($_GET['shoot_id'])) {
+    $shoot_key = $_GET['shoot_id'];
+
+    // Call the function to search shoots
+    $shoots = searchshoot_ctr($shoot_key);
+}
 
 ?>
 
@@ -18,7 +25,7 @@ $countwed =count_shootcart_ctr($cid);
 
 <head>
     <meta charset="utf-8">
-    <title>Photo Tamer Cart</title>
+    <title>Photo Tamer Shoots</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -97,10 +104,10 @@ $countwed =count_shootcart_ctr($cid);
                     <div class="navbar-nav mr-auto py-0">
                         <a href="index.php" class="nav-item nav-link">Home</a>
                         <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="allshoots.php" class="nav-item nav-link">Services</a>
+                        <a href="allshoots.php" class="nav-item nav-link active">Services</a>
                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                         <a href="../Login/register.php" class="nav-item nav-link">Register</a>
-                        <a href="cart.php" class="nav-item nav-link active">Cart</a>
+                        <a href="cart.php" class="nav-item nav-link">Cart</a>
                     </div>
                     <a href="index.php" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Logout</a>
                 </div>
@@ -115,131 +122,53 @@ $countwed =count_shootcart_ctr($cid);
 <div class="container-fluid bg-primary p-5 bg-hero mb-5">
     <div class="row py-5">
         <div class="col-12 text-center">
-            <h1 class="display-2 text-uppercase text-white mb-md-4">Cart</h1>
+            <h1 class="display-2 text-uppercase text-white mb-md-4">Shoots</h1>
         </div>
     </div>
 </div>
 <!-- Hero End -->
 
+<!-- Sidebar Start -->
+
+<div class="col-lg-4">
+    <!-- Search Form Start -->
+    <form action="../actions/shoot_search.php" method="POST">
+        <div style="text-align:center;">
+            <div class="mb-5 text-center">
+                <div class="input-group">
+                    <input type="text" class="form-control p-3" placeholder="Keyword" name="search" value="">
+                    <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Search Form End -->
+    <!-- Plain Text End -->
+</div>
+
+<!-- Sidebar End -->
 </div>
 </div>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Service</th>
-        <th scope="col">Price</th>
-        <th scope="col">Qunatity</th>
-        <th scope="col">Cancel</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    $shootcart=get_from_shootcart_ctr($_SESSION['customer_id']);
-    ?>
-    <!-- Shoots -->
-    <?php
-    foreach($shootcart as $item){
-        ?>
-        <tr>
-            <td><img src="../images/images/shoots/<?php echo ($item['shoot_img'])?>" style="width: 50px;"></td>
-            <td><?php echo($item['shoot_name']) ?></td>
-            <td><?php echo('GHC'); echo($item['shoots.shoot_price*shootcart.qty']); ?></td>
-            <td>
-                <div class="input-group mb-3" style="width: 100px;">
-                    <div class="input-group-prepend">
-                        <button class="input-group-text" id="pid" onclick="loadDoc1(<?php echo $item['shoot_id'];?>)">-</button>
+<!-- Shoot Search Results -->
+<div class="container mt-5">
+    <h2>Shoot Search Results</h2>
+    <div class="row">
+        <?php foreach($shoots as $shoot): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="../images/images/shoots/<?php echo $shoot['shoot_img']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $shoot['shoot_name']; ?></h5>
+                        <p class="card-text">$<?php echo $shoot['shoot_price']; ?></p>
+                        <a href="single_shoot.php?shoot_id=<?php echo $shoot['shoot_id']; ?>" class="btn btn-primary">View Details</a>
                     </div>
-                    <input type="text" class="form-control text-center bg-white"  value="<?php echo $item['qty'];?>" disabled>
-                    <div class="input-group-appnd">
-                        <button class="input-group-text" id="pin" onclick="loadDoc(<?php echo $item['shoot_id'];?>)" >+</button>
-                    </div>
-            </td>
-            <td>
-                <form action="../actions/remove_shoots_from_cart.php" method="POST">
-                    <input type="hidden" name="p_id" value="<?php echo($item['shoot_id']);?>" >
-                    <!-- <button name="deleteCart" ></button> -->
-                    <input type="submit" name="deleteCart" class='btn btn-outline-danger' value="Delete Order">
-                </form>
-            </td>
-        </tr>
-        <?php
-    }
-    ?>
-    </tbody>
-</table>
-
-<div class="card border-dark mb-3" style="max-width: 18rem; margin: 0px 100px auto;">
-    <div class="card-header">Cart Summary</div>
-    <div class="card-body text-dark">
-        <h5 class="card-title">Subtotal</h5>
-        <?php
-        $get = get_from_weddingcart_ctr($cid);
-        $shoot = get_from_shootcart_ctr($cid);
-        $total = total_weddingcart_price_ctr($cid);
-        $shootT = total_shootcart_price_ctr($cid);
-        foreach ($get as $item){
-        echo $item['wedding.wedding_price*cart.qty'];
-        ?>
-    <?php
-    foreach ($shoot as $item){
-
-    ?>
-
-        <p class="card-text">
-            <?php
-            echo $item['shoots.shoot_price*shootcart.qty'];
-            ?>
-            <?php } ?>
-            <?php } ?>
-
-        <h5>Total</h5>
-        $<?php echo $total["SUM(cart.qty*wedding.wedding_price)"] + $shootT["SUM(shootcart.qty*shoots.shoot_price)"]  ?>
-        </p>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
-<!-- Script to handle qyt changes -->
-<script>
-    function loadDoc(id){
-        inputbx= document.getElementByID("pin").value;
-        console.log(id);
-        dataString = 'pid='+ id +'&inputbx='+inputbx;
-
-
-
-        $.ajax({
-            type: "POST",
-            url:"../actions/update_qty.php",
-            data: dataString,
-            cache:false,
-            success:function(result){
-                alert(result);
-            }
-
-        });
-
-    }
-
-    function loadDoc1(id1){
-        inputbx1 = document.getElementByID("pid").value;
-        dataString= 'pid1='+id1+'&inputbx1='+inputbx1;
-        console.log(id1);
-    }
-
-    $.ajax({
-        type: "POST",
-        url:"../actions/update_qty.php",
-        data: dataString,
-        cache:false,
-        success:function(result){
-            alert(result);
-        }
-
-    });
-</script>
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-secondary px-5 mt-5">

@@ -3,12 +3,8 @@
 require("../settings/db_class.php");
 
 /**
-*General class to handle all functions 
+*General class to handle all functions
 */
-/**
- *@author David Sampah
- *
- */
 
 class cart_class extends db_connection
 {
@@ -17,7 +13,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "DELETE FROM `cart` WHERE `p_id`='$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this->db_query($sql);
 	}
 
@@ -25,7 +21,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql = "INSERT INTO `cart`(`p_id`, `ip_add`, `c_id`, `qty`) VALUES ('$p_id','$ip_add','$c_id','$qty')";
-		// Return  
+		// Return
 		return $this -> db_query($sql);
 	}
 
@@ -33,7 +29,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql = "UPDATE `cart` SET qty=(qty + 1 )  WHERE `p_id`='$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this -> db_query($sql);
 	}
 
@@ -41,7 +37,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql = "UPDATE `cart` SET qty=(qty - 1 )  WHERE `p_id`='$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this -> db_query($sql);
 	}
 
@@ -49,7 +45,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql = "UPDATE `cart` SET qty=qty+1   WHERE `p_id`='$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this -> db_query($sql);
 	}
 
@@ -58,7 +54,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT * FROM `cart`";
-		// Return  
+		// Return
 		return $this -> db_fetch_all($sql);
 	}
 
@@ -66,7 +62,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT * FROM `cart` WHERE `c_id` = '$c_id'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
@@ -74,14 +70,14 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT SUM(qty) FROM `cart` WHERE `c_id` = '$c_id'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
 	public function updatecartwedding_quantity($p_id,$c_id){
 
 		$sql = "UPDATE `cart` SET qty=qty-1 WHERE p_id = '$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this -> db_query($sql);
 	}
 
@@ -89,7 +85,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT `qty` FROM `cart` WHERE `p_id` = '$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
@@ -97,7 +93,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT * FROM `cart` inner join `products` on  cart.p_id = wedding.wedding_id WHERE `c_id`= '$c_id'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
@@ -105,7 +101,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT * FROM customer WHERE customer_id= '$c_id' LIMIT 1";
-		// Return  
+		// Return
 		return $this->db_fetch_one($sql);
 	}
 
@@ -113,7 +109,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "DELETE FROM `cart` WHERE `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this->db_query($sql);
 	}
 
@@ -121,7 +117,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "SELECT `p_id`, `c_id` FROM `cart` WHERE `p_id`='$p_id' AND `c_id`='$c_id'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
@@ -130,7 +126,7 @@ class cart_class extends db_connection
 		// Write query
 		$sql =  "SELECT wedding.wedding_price*cart.qty ,cart.qty, wedding.wedding_id,wedding.wedding_name ,wedding.wedding_price, wedding.wedding_label,wedding.wedding_img, wedding.wedding_key  FROM cart  
 		INNER JOIN wedding ON cart.p_id = wedding.wedding_id WHERE cart.c_id ='$a'";
-		// Return  
+		// Return
 		return $this->db_fetch_all($sql);
 	}
 
@@ -138,7 +134,7 @@ class cart_class extends db_connection
 
 		// Write query
 		$sql =  "INSERT INTO `orders`(`customer_id`, `invoice_no`, `order_date`, `order_status`) VALUES ('$customer_id','$invoice_no','$order_date','success')";
-		// Return  
+		// Return
 		return $this->db_query($sql);
 	}
 
@@ -147,14 +143,14 @@ class cart_class extends db_connection
 		// Write query
 		$sql =  "INSERT INTO `payment`(`amt`, `customer_id`, `order_id`, `currency`, `payment_date`) 
         VALUES ('$amt','$customer_id','$order_id','GHS','$payment_date')";
-		// Return  
+		// Return
 		return $this->db_query($sql);
 	}
 
 	function get_weddingorder_id($invoice_no){
 		$sql="SELECT `order_id` FROM `orders` WHERE `invoice_no`='$invoice_no'";
 		return $this->db_fetch_one($sql);
-	
+
 	}
 
 	function get_weddingorder_date(){
@@ -169,11 +165,11 @@ class cart_class extends db_connection
 		return $this->db_query($sql);
 	}
 
-	
+
 
 	function delete_after_pay_weddingcart($cid){
 		$sql = "DELETE FROM `cart` WHERE `c_id`='$cid'";
-	
+
 		return $this->db_query($sql);
 	}
 
@@ -181,18 +177,18 @@ class cart_class extends db_connection
 	function get_cart_weddingdetails($c_id){
 
 	$sql="SELECT `p_id`, `qty` FROM `cart` WHERE c_id='$c_id'";
-		
+
 	return $this->db_fetch_one($sql);
 	}
 
 	function total_weddingcart_price($a){
         $sql = "SELECT SUM(cart.qty*wedding.wedding_price) FROM `cart` INNER JOIN `wedding` ON cart.p_id = wedding.wedding_id WHERE cart.c_id ='$a'";
-    
+
         return $this->db_fetch_one($sql);
 
     }
 
-	
+
 // ===============================================================================================================================================================================================
 
 	/* SHOOT CART  */
