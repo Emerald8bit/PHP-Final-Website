@@ -146,7 +146,7 @@ $countwed =count_shootcart_ctr($cid);
         <tr>
             <td><img src="../images/images/shoots/<?php echo ($item['shoot_img'])?>" style="width: 50px;"></td>
             <td><?php echo($item['shoot_name']) ?></td>
-            <td><?php echo('GHC'); echo($item['shoots.shoot_price*shootcart.qty']); ?></td>
+            <td><?php echo('$'); echo($item['shoots.shoot_price*cart.qty']); ?></td>
             <td>
                 <div class="input-group mb-3" style="width: 100px;">
                     <div class="input-group-prepend">
@@ -190,13 +190,13 @@ $countwed =count_shootcart_ctr($cid);
 
         <p class="card-text">
             <?php
-            echo $item['shoots.shoot_price*shootcart.qty'];
+            echo $item['shoots.shoot_price*cart.qty'];
             ?>
             <?php } ?>
             <?php } ?>
 
         <h5>Total</h5>
-        $<?php echo $total["SUM(cart.qty*wedding.wedding_price)"] + $shootT["SUM(shootcart.qty*shoots.shoot_price)"]  ?>
+        $<?php echo $total["SUM(cart.qty*wedding.wedding_price)"] + $shootT["SUM(cart.qty*shoots.shoot_price)"]  ?>
         </p>
     </div>
 </div>

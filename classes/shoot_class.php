@@ -57,7 +57,7 @@ class shoot_class extends db_connection
 		// Cart
 		// search
 		public function search_shoots($shoot_key){
-			$sql = "SELECT * FROM `shoots` WHERE `shoot_key` LIKE '%$shoot_key%'";
+			$sql = "SELECT * FROM `shoots` WHERE `shoot_name` LIKE '%$shoot_key%'";
 			return $this->db_fetch_all($sql);
 		}  
 	

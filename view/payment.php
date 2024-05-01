@@ -188,7 +188,7 @@ $datas = get_shootorder_id_ctr($_SESSION['customer_id']);
     ?>
     <tr>
       <td><?php echo($item['shoot_name']) ?></td>
-      <td><?php echo('GHC'); echo($item['shoots.shoot_price*shootcart.qty']); ?></td>
+      <td><?php echo('GHC'); echo($item['shoots.shoot_price*cart.qty']); ?></td>
       <td>
       <form action="../actions/remove_shoots_from_cart.php" method="POST">
         <input type="hidden" name="p_id" value="<?php echo($item['shoot_id']);?>" >
@@ -227,7 +227,7 @@ $datas = get_shootorder_id_ctr($_SESSION['customer_id']);
 				</div>
 				<div class="form-group form-group-cc-cvc">
 					<label>Total Amount</label>
-					<input readonly class="form-control" value="<?php echo $total["SUM(cart.qty*wedding.wedding_price)"] + $shootT["SUM(shootcart.qty*shoots.shoot_price)"]  ?>" id="amount5" type="number">
+					<input readonly class="form-control" value="<?php echo $total["SUM(cart.qty*wedding.wedding_price)"] + $shootT["SUM(cart.qty*shoots.shoot_price)"]  ?>" id="amount5" type="number">
 				</div>
 				</div>	
 			    <button type="submit" class="btn btn-primary submit" onclick="payWithPaystack()" >Proceed Payment</button>
